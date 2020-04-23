@@ -5,6 +5,11 @@
     <AssemblyName>ProgrammingTraining.Login</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Prism.Wpf" Version="7.2.0.1367" />
+    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
+    <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.0" />
+    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+    <PackageReference Include="System.Management" Version="4.7.0" />
   </ItemGroup>
 </Project>
