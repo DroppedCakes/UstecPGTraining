@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgrammingTraining.Login.ViewModels
+namespace ProgrammingTraining.Worklist.ViewModels
 {
-    public class ViewAViewModel : BindableBase
+    public class WorklistViewModel : BindableBase
     {
         private string _message;
         public string Message
@@ -17,9 +17,9 @@ namespace ProgrammingTraining.Login.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        public ViewAViewModel()
+        public WorklistViewModel()
         {
-            Message = "View A from your Prism Module";
+            Message = "検査一覧画面";
         }
     }
 }
