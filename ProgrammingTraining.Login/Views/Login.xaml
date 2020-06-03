@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    xmlns:local="clr-namespace:ProgrammingTraining.Login.Views"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
@@ -66,7 +65,7 @@
             materialDesign:HintAssist.Hint="UserID"
             FontSize="30"
             TabIndex="1"
-            Text="{Binding Path=UserID, UpdateSourceTrigger=PropertyChanged}">
+            Text="{Binding Path=UserId.Value, UpdateSourceTrigger=PropertyChanged}">
             <TextBox.InputBindings>
                 <KeyBinding
                     Command="{Binding Path=LoginCommand}"
