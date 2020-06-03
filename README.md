@@ -1,6 +1,7 @@
 # U'sTEC ProgrammingTraining
 
 ユーズテックのプログラミング課題サンプルリポジトリ
+![demo](https://user-images.githubusercontent.com/43688962/83635534-5aed1b80-a5df-11ea-8510-89277fe5e6d2.gif)
 
 ## 検査一覧プログラムの要求仕様
 
