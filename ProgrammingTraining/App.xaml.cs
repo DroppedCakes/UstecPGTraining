@@ -1,6 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using ProgrammingTraining.Login;
+using ProgrammingTraining.Models;
 using ProgrammingTraining.Views;
 using ProgrammingTraining.Worklist;
 using System.Windows;
@@ -19,7 +20,7 @@ namespace ProgrammingTraining
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterInstance(new WorkitemManager());
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
