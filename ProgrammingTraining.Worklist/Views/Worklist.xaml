@@ -3,17 +3,44 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:ProgrammingTraining.Worklist.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    xmlns:vm="clr-namespace:ProgrammingTraining.Worklist.ViewModels"
+    d:DataContext="{d:DesignInstance Type={x:Type vm:WorklistViewModel},
+                                     IsDesignTimeCreatable=True}"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding Message}" />
+        <StackPanel>
+            <TextBlock>検査一覧画面</TextBlock>
+            <Button
+                Width="200"
+                Margin="8"
+                Command="{Binding ReloadCommand}">
+                取得
+            </Button>
+            <Button
+                Width="200"
+                Margin="8"
+                Command="{Binding ClearCommand}">
+                クリア
+            </Button>
+            <ListView
+                MaxHeight="600"
+                ItemsSource="{Binding StudiesView}"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding OrderNumber}" Header="オーダー番号" />
+                        <GridViewColumn DisplayMemberBinding="{Binding PatientId}" Header="患者ID" />
+                        <GridViewColumn DisplayMemberBinding="{Binding NameKanji}" Header="氏名" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>

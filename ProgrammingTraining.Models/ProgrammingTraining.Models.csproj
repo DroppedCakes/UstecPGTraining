@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+    <PackageReference Include="ReactiveProperty" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProgrammingTraining.Infrastructure\ProgrammingTraining.Infrastructure.csproj" />
+    <ProjectReference Include="..\Ustec.WpfHelpers\Ustec.WpfHelpers.csproj" />
+  </ItemGroup>
+
+</Project>

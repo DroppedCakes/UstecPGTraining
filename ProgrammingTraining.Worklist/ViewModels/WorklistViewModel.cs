@@ -1,25 +1,57 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
+using ProgrammingTraining.Models;
+using Reactive.Bindings;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace ProgrammingTraining.Worklist.ViewModels
 {
     public class WorklistViewModel : BindableBase
     {
-        private string _message;
-        public string Message
+        private readonly WorkitemManager _workitemManager;
+
+        public ReadOnlyReactiveCollection<WorkitemViewModel> Studies;
+
+        public ICollectionView StudiesView { get; }
+
+        public ReactiveCommand ClearCommand { get; }
+
+        public ReactiveCommand ReloadCommand { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public void ReloadWorkitems()
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            this._workitemManager.FetchWorkitems();
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// DIでModel層を注入する
+        /// </summary>
+        /// <param name="workitemManager"></param>
+        public WorklistViewModel(WorkitemManager workitemManager)
+        {
+            this._workitemManager = workitemManager;
+
+            this.Studies = this._workitemManager.Workitems
+                .ToReadOnlyReactiveCollection(x => new WorkitemViewModel(x));
+
+            this.StudiesView = CollectionViewSource.GetDefaultView(this.Studies);
+
+            this.ClearCommand = new ReactiveCommand()
+                .WithSubscribe(this._workitemManager.ClearWorkitems);
+
+            this.ReloadCommand = new ReactiveCommand()
+                .WithSubscribe(() => this.ReloadWorkitems());
         }
 
         public WorklistViewModel()
         {
-            Message = "検査一覧画面";
         }
     }
 }
