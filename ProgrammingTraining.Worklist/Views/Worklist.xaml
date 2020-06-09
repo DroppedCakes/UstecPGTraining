@@ -35,12 +35,9 @@
                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding OrderingDate}" Header="検査日付" />
                         <GridViewColumn DisplayMemberBinding="{Binding OrderNumber}" Header="オーダー番号" />
                         <GridViewColumn DisplayMemberBinding="{Binding PatientId}" Header="患者ID" />
                         <GridViewColumn DisplayMemberBinding="{Binding NameKanji}" Header="氏名" />
-                        <GridViewColumn DisplayMemberBinding="{Binding SexDisplayName}" Header="性別" />
-                        <GridViewColumn DisplayMemberBinding="{Binding BirthDate, StringFormat=yyyy/MM/dd}" Header="生年月日" />
                     </GridView>
                 </ListView.View>
             </ListView>

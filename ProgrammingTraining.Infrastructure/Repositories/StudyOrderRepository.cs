@@ -5,14 +5,6 @@ namespace ProgrammingTraining.Infrastructure.Repositories
 {
     public class StudyOrderRepository
     {
-        private static readonly string[] SexCodes = {
-            "F",
-            "M",
-            "O",
-        };
-
-        private readonly Random _random = new Random();
-
         public IEnumerable<Workitem> FetchWorkitems(DateTime? since, DateTime? until, string patientId)
         {
             // TODO
@@ -40,10 +32,9 @@ namespace ProgrammingTraining.Infrastructure.Repositories
                 NameWKana = $"テスト カンジャ{i}",
                 ModalityId = i,
                 OrderingDate = DateTime.Now.ToString("yyyyMMdd"),
-                ReceiptedAt = new DateTime(0001, 01, 01),
-                // 雑にランダムで性別を決定
-                SexCode = SexCodes[this._random.Next(0,3)],
-                BirthDate = new DateTime(2000, 12, 31)
+                ReceiptedAt = new DateTime(0001,01,01),
+                SexCode = "O",
+                BirthDate = new DateTime(2000,12,31)
             };
         }
     }
