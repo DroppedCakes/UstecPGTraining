@@ -3,7 +3,14 @@
 ユーズテックのプログラミング課題サンプルリポジトリ
 ![demo](https://user-images.githubusercontent.com/43688962/83635534-5aed1b80-a5df-11ea-8510-89277fe5e6d2.gif)
 
-## 実行環境
+## アプリケーションについて
+- 一つのSolutionの中に2つのPRISM Applicationが存在している。
+- スタートアッププロジェクトを切り替えることでそれぞれのアプリケーションのデバック実行が可能。
+  - Rx版：ProgrammingTraining
+  - Normal版：ProgrammingTraining.BasicWpfApp
+
+
+## 環境
 - .Net Core 3.1
 - C# 7.x
 - PRISM 7.2.x
