@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using ProgrammingTraining.Infrastructure.Repositories;
+using Reactive.Bindings;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,13 +12,15 @@ namespace ProgrammingTraining.BasicWpfApp.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "WPF Basic Application";
+        //private string _title = "WPF Basic Application";
 
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        //public string Title
+        //{
+        //    get { return _title; }
+        //    set { SetProperty(ref _title, value); }
+        //}
+
+        public ReactiveProperty<string> Title { get; } = new ReactiveProperty<string>("Kitazawa");
 
         private readonly StudyOrderRepository _repository;
 
@@ -41,6 +44,8 @@ namespace ProgrammingTraining.BasicWpfApp.ViewModels
             var now = DateTime.Now;
             var items = this._repository.FetchWorkitems(now, now, "1");
             this.Workitems.AddRange(items.Select(i => new WorkitemViewModel(i)));
+
+            this.Title.Value = "ｋａｗａｔｔａｙｏ";
         }
 
         #endregion Methods
