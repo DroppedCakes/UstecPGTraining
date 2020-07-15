@@ -1,10 +1,7 @@
 ﻿using Prism.Mvvm;
 using ProgrammingTraining.Models;
 using Reactive.Bindings;
-using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Data;
 
 namespace ProgrammingTraining.Worklist.ViewModels
@@ -12,6 +9,7 @@ namespace ProgrammingTraining.Worklist.ViewModels
     public class WorklistViewModel : BindableBase
     {
         private readonly WorkitemManager _workitemManager;
+        private readonly TitleMessenger _titleMessenger;
 
         public ReadOnlyReactiveCollection<WorkitemViewModel> Studies;
 
@@ -20,6 +18,11 @@ namespace ProgrammingTraining.Worklist.ViewModels
         public ReactiveCommand ClearCommand { get; }
 
         public ReactiveCommand ReloadCommand { get; }
+
+        /// <summary>
+        /// Shell(MainWindow)のタイトル変更コマンド
+        /// </summary>
+        public ReactiveCommand ChangeTitleCommand { get; }
 
         /// <summary>
         ///
@@ -34,9 +37,10 @@ namespace ProgrammingTraining.Worklist.ViewModels
         /// DIでModel層を注入する
         /// </summary>
         /// <param name="workitemManager"></param>
-        public WorklistViewModel(WorkitemManager workitemManager)
+        public WorklistViewModel(WorkitemManager workitemManager, TitleMessenger titleMessenger)
         {
             this._workitemManager = workitemManager;
+            this._titleMessenger = titleMessenger;
 
             this.Studies = this._workitemManager.Workitems
                 .ToReadOnlyReactiveCollection(x => new WorkitemViewModel(x));
@@ -48,6 +52,9 @@ namespace ProgrammingTraining.Worklist.ViewModels
 
             this.ReloadCommand = new ReactiveCommand()
                 .WithSubscribe(() => this.ReloadWorkitems());
+
+            this.ChangeTitleCommand = new ReactiveCommand()
+                .WithSubscribe(() => this._titleMessenger.ChangeTitle("Worklist"));
         }
 
         public WorklistViewModel()

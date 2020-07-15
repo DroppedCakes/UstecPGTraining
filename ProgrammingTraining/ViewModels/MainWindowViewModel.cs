@@ -1,19 +1,25 @@
 ﻿using Prism.Mvvm;
+using ProgrammingTraining.Models;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
 namespace ProgrammingTraining.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "Prism Application";
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        private readonly TitleMessenger _titleMessenger;
 
-        public MainWindowViewModel()
-        {
+        public ReactiveProperty<string> Title { get; }
 
+        public MainWindowViewModel(TitleMessenger titleMessenger)
+        {
+            // Model
+            this._titleMessenger = titleMessenger;
+
+            // Model → VMの接続
+            this.Title = this._titleMessenger
+                .ObserveProperty(m => m.Title)
+                .ToReactiveProperty();
         }
     }
 }

@@ -21,6 +21,7 @@ namespace ProgrammingTraining
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance(new WorkitemManager());
+            containerRegistry.RegisterSingleton<TitleMessenger>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
