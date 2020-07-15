@@ -120,7 +120,7 @@
                 Command="{Binding Path=LoginCommand}"
                 CommandParameter="{Binding ElementName=PasswordBox}"
                 Content="ログイン"
-                TabIndex="3" />
+                TabIndex="3" Cursor="Hand" />
 
             <Button
                 Grid.Row="0"
