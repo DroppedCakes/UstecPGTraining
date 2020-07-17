@@ -5,6 +5,7 @@ using ProgrammingTraining.Models;
 using ProgrammingTraining.Views;
 using ProgrammingTraining.Worklist;
 using System.Windows;
+using Ustec.WpfHelpers;
 
 namespace ProgrammingTraining
 {
@@ -28,6 +29,7 @@ namespace ProgrammingTraining
         {
             moduleCatalog.AddModule<LoginModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<WorklistModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<WpfHelpersModeule>();
         }
     }
 }
