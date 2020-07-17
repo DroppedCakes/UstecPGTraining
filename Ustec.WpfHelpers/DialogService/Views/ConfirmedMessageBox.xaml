@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="Ustec.WpfHelpers.DialogService.Views.ConfirmedMessageBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="ResizeMode" Value="NoResize" />
+            <Setter Property="ShowInTaskbar" Value="False" />
+            <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        </Style>
+    </prism:Dialog.WindowStyle>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Grid Margin="12,12,12,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon
+                    Width="48"
+                    Height="48"
+                    VerticalAlignment="Top"
+                    Kind="HelpCircleOutline" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="8,8,0,8"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    FontSize="24"
+                    Foreground="White"
+                    Text="{Binding Message.Value, Mode=OneWay}"
+                    TextWrapping="Wrap" />
+            </Grid>
+        </Border>
+        <Border
+            Grid.Row="1"
+            Height="2"
+            Margin="16,0"
+            CornerRadius="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0" Color="#FFD0D0D0" />
+                    <GradientStop Offset="1" Color="#FFA0A0A0" />
+                    <GradientStop Offset="0.49" Color="#FFD0D0D0" />
+                    <GradientStop Offset="0.5" Color="#FFA0A0A0" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2">
+            <StackPanel
+                Margin="16,12"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Command="{Binding YesCommand}"
+                    Content="はい"
+                    IsDefault="True" />
+                <Button
+                    Margin="24,0,0,0"
+                    Command="{Binding NoCommand}"
+                    Content="いいえ"
+                    IsCancel="True" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
