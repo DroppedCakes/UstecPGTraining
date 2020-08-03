@@ -3,6 +3,8 @@ using ProgrammingTraining.Models;
 using Reactive.Bindings;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Linq;
+using System;
 
 namespace ProgrammingTraining.Worklist.ViewModels
 {
@@ -32,6 +34,44 @@ namespace ProgrammingTraining.Worklist.ViewModels
             this._workitemManager.FetchWorkitems();
         }
 
+        #region Filtering
+
+        public ReactiveProperty<string> TextFilter { get; } = new ReactiveProperty<string>(string.Empty);
+
+        /// <summary>
+        /// フィルター
+        /// trueである検査のみワークリストに表示する
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        private bool WorkitemFilter(object o)
+        {
+            var study = o as WorkitemViewModel;
+            var filterText = this.TextFilter.Value;
+
+            if (!study.NameKanji.StartsWith(filterText)
+                && !study.NameWKana.StartsWith(filterText)
+                && !study.PatientId.StartsWith(filterText)
+                && !study.OrderNumber.StartsWith(filterText))
+            {
+                return false;
+                //  NOTREACHED
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Filter結果を反映するために、
+        /// ICollectionViewの再描画を行う
+        /// </summary>
+        private void Refresh()
+        {
+            this.StudiesView.Refresh();
+        }
+
+        #endregion Filtering
+
         /// <summary>
         /// コンストラクタ
         /// DIでModel層を注入する
@@ -46,6 +86,7 @@ namespace ProgrammingTraining.Worklist.ViewModels
                 .ToReadOnlyReactiveCollection(x => new WorkitemViewModel(x));
 
             this.StudiesView = CollectionViewSource.GetDefaultView(this.Studies);
+            this.StudiesView.Filter = this.WorkitemFilter;
 
             this.ClearCommand = new ReactiveCommand()
                 .WithSubscribe(this._workitemManager.ClearWorkitems);
@@ -55,6 +96,8 @@ namespace ProgrammingTraining.Worklist.ViewModels
 
             this.ChangeTitleCommand = new ReactiveCommand()
                 .WithSubscribe(() => this._titleMessenger.ChangeTitle("Worklist"));
+
+            this.TextFilter.Subscribe(_ => this.Refresh());
         }
 
         public WorklistViewModel()
