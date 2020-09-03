@@ -1,15 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>ProgrammingTraining.BasicWpfApp</AssemblyName>
+    <AssemblyName>ProgrammingTraining.Detail</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Prism.DryIoc" Version="7.2.0.1422" />
+    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
     <PackageReference Include="ReactiveProperty" Version="7.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProgrammingTraining.Infrastructure\ProgrammingTraining.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProgrammingTraining.Models\ProgrammingTraining.Models.csproj" />
   </ItemGroup>
 </Project>

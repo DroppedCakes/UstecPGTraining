@@ -2,7 +2,7 @@
 using System;
 using Ustec.WpfHelpers;
 
-namespace ProgrammingTraining.Worklist.ViewModels
+namespace ProgrammingTraining.Models.ViewModels
 {
     public class WorkitemViewModel : BindableModelBase
     {

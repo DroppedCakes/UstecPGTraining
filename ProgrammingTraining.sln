@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingTraining.Models"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ustec.WpfHelpers", "Ustec.WpfHelpers\Ustec.WpfHelpers.csproj", "{0F51D914-19E7-4955-8BF5-7779A0E00C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingTraining.BasicWpfApp", "ProgrammingTraining.BasicWpfApp\ProgrammingTraining.BasicWpfApp.csproj", "{60DA57CF-82F0-4091-B74B-AAD9C0972D5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgrammingTraining.BasicWpfApp", "ProgrammingTraining.BasicWpfApp\ProgrammingTraining.BasicWpfApp.csproj", "{60DA57CF-82F0-4091-B74B-AAD9C0972D5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammingTraining.Detail", "ProgrammingTraining.Detail\ProgrammingTraining.Detail.csproj", "{762CDBDE-DE90-479E-AAE3-776CCD261C63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{60DA57CF-82F0-4091-B74B-AAD9C0972D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60DA57CF-82F0-4091-B74B-AAD9C0972D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60DA57CF-82F0-4091-B74B-AAD9C0972D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{762CDBDE-DE90-479E-AAE3-776CCD261C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{762CDBDE-DE90-479E-AAE3-776CCD261C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{762CDBDE-DE90-479E-AAE3-776CCD261C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{762CDBDE-DE90-479E-AAE3-776CCD261C63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
