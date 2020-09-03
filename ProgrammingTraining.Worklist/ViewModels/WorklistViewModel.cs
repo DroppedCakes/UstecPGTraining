@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using Prism.Regions;
+using ProgrammingTraining.Infrastructure;
 using ProgrammingTraining.Models;
 using ProgrammingTraining.Models.ViewModels;
 using Reactive.Bindings;
@@ -53,7 +54,7 @@ namespace ProgrammingTraining.Worklist.ViewModels
                 { "Workitem",this.SelectedStudy.Value }
             };
 
-            this._regionManager.RequestNavigate("ContentRegion", nameof(Detail.Views.Detail), parameters);
+            this._regionManager.RequestNavigate(RegionNames.ContentRegion, RegionNames.Detail, parameters);
         }
 
         #region Filtering

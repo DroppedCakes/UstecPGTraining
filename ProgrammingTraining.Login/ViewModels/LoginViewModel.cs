@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Services.Dialogs;
+using ProgrammingTraining.Infrastructure;
 using ProgrammingTraining.Login.Properties;
 using Reactive.Bindings;
 using System.Windows;
@@ -29,7 +30,7 @@ namespace ProgrammingTraining.Login.ViewModels
         {
             passwordBox.Password = string.Empty;
             // TODO
-            this._regionManager.RequestNavigate("ContentRegion", nameof(Worklist.Views.Worklist));
+            this._regionManager.RequestNavigate(RegionNames.ContentRegion, RegionNames.Worklist);
         }
 
         /// <summary>
