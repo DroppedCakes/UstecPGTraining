@@ -1,16 +1,12 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Regions;
+using ProgrammingTraining.Infrastructure;
 using ProgrammingTraining.Models.ViewModels;
 using Reactive.Bindings;
-using Reactive.Bindings.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ProgrammingTraining.Detail.ViewModels
 {
-    public class DetailViewModel : BindableBase,INavigationAware
+    public class DetailViewModel : BindableBase, INavigationAware
     {
         private readonly IRegionManager _regionManager;
 
@@ -19,6 +15,13 @@ namespace ProgrammingTraining.Detail.ViewModels
         public ReactivePropertySlim<string> PatientId { get; }
         public ReactivePropertySlim<string> NameKanji { get; }
 
+        public ReactiveCommand NavigateWorklistCommand { get; }
+
+        private void NavigateWorklist()
+        {
+            this._regionManager.RequestNavigate(RegionNames.ContentRegion, RegionNames.Worklist);
+        }
+
         public DetailViewModel(IRegionManager regionManager)
         {
             this._regionManager = regionManager;
@@ -26,6 +29,9 @@ namespace ProgrammingTraining.Detail.ViewModels
             this.Workitem = new ReactiveProperty<WorkitemViewModel>();
             this.PatientId = new ReactivePropertySlim<string>();
             this.NameKanji = new ReactivePropertySlim<string>();
+
+            this.NavigateWorklistCommand = new ReactiveCommand()
+                .WithSubscribe(() => this.NavigateWorklist());
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -40,7 +46,6 @@ namespace ProgrammingTraining.Detail.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-
         }
     }
 }

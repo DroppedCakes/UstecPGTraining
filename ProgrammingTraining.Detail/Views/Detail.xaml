@@ -11,6 +11,8 @@
 
             <TextBlock>患者氏名</TextBlock>
             <TextBlock Text="{Binding NameKanji.Value, Mode=OneWay}" />
+
+            <Button Command="{Binding NavigateWorklistCommand}" Content="戻る" />
         </StackPanel>
     </Grid>
 </UserControl>
