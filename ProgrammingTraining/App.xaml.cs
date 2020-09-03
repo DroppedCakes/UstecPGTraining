@@ -1,5 +1,6 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
+using ProgrammingTraining.Detail;
 using ProgrammingTraining.Login;
 using ProgrammingTraining.Models;
 using ProgrammingTraining.Views;
@@ -29,6 +30,7 @@ namespace ProgrammingTraining
         {
             moduleCatalog.AddModule<LoginModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<WorklistModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<DetailModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<WpfHelpersModeule>();
         }
     }
