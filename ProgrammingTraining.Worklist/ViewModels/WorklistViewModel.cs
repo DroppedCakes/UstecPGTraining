@@ -1,25 +1,34 @@
 ﻿using Prism.Mvvm;
+using Prism.Regions;
 using ProgrammingTraining.Models;
+using ProgrammingTraining.Models.ViewModels;
 using Reactive.Bindings;
-using System.ComponentModel;
-using System.Windows.Data;
-using System.Linq;
+using Reactive.Bindings.Extensions;
 using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Data;
 
 namespace ProgrammingTraining.Worklist.ViewModels
 {
     public class WorklistViewModel : BindableBase
     {
+        private readonly IRegionManager _regionManager;
         private readonly WorkitemManager _workitemManager;
         private readonly TitleMessenger _titleMessenger;
 
         public ReadOnlyReactiveCollection<WorkitemViewModel> Studies;
+
+        [Required]
+        public ReactiveProperty<WorkitemViewModel> SelectedStudy { get; }
 
         public ICollectionView StudiesView { get; }
 
         public ReactiveCommand ClearCommand { get; }
 
         public ReactiveCommand ReloadCommand { get; }
+
+        public ReactiveCommand NavigateDetailCommand { get; }
 
         /// <summary>
         /// Shell(MainWindow)のタイトル変更コマンド
@@ -32,6 +41,19 @@ namespace ProgrammingTraining.Worklist.ViewModels
         public void ReloadWorkitems()
         {
             this._workitemManager.FetchWorkitems();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        private void NavigateToDetailWithParams()
+        {
+            var parameters = new NavigationParameters
+            {
+                { "Workitem",this.SelectedStudy.Value }
+            };
+
+            this._regionManager.RequestNavigate("ContentRegion", nameof(Detail.Views.Detail), parameters);
         }
 
         #region Filtering
@@ -77,8 +99,9 @@ namespace ProgrammingTraining.Worklist.ViewModels
         /// DIでModel層を注入する
         /// </summary>
         /// <param name="workitemManager"></param>
-        public WorklistViewModel(WorkitemManager workitemManager, TitleMessenger titleMessenger)
+        public WorklistViewModel(IRegionManager regionManager, WorkitemManager workitemManager, TitleMessenger titleMessenger)
         {
+            this._regionManager = regionManager;
             this._workitemManager = workitemManager;
             this._titleMessenger = titleMessenger;
 
@@ -88,11 +111,20 @@ namespace ProgrammingTraining.Worklist.ViewModels
             this.StudiesView = CollectionViewSource.GetDefaultView(this.Studies);
             this.StudiesView.Filter = this.WorkitemFilter;
 
+            this.SelectedStudy = new ReactiveProperty<WorkitemViewModel>()
+                .SetValidateAttribute(() => this.SelectedStudy);
+
             this.ClearCommand = new ReactiveCommand()
                 .WithSubscribe(this._workitemManager.ClearWorkitems);
 
             this.ReloadCommand = new ReactiveCommand()
                 .WithSubscribe(() => this.ReloadWorkitems());
+
+            this.NavigateDetailCommand = this.SelectedStudy
+                .ObserveHasErrors
+                .Inverse()
+                .ToReactiveCommand()
+                .WithSubscribe(() => this.NavigateToDetailWithParams());
 
             this.ChangeTitleCommand = new ReactiveCommand()
                 .WithSubscribe(() => this._titleMessenger.ChangeTitle("Worklist"));

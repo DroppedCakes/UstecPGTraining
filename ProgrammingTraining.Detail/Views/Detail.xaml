@@ -1,0 +1,16 @@
+﻿<UserControl
+    x:Class="ProgrammingTraining.Detail.Views.Detail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <StackPanel>
+            <TextBlock>患者ID</TextBlock>
+            <TextBlock Text="{Binding PatientId.Value, Mode=OneWay}" />
+
+            <TextBlock>患者氏名</TextBlock>
+            <TextBlock Text="{Binding NameKanji.Value, Mode=OneWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>
